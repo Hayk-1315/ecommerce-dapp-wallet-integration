@@ -26,7 +26,8 @@ if (window.ethereum) {
   window.ethereum.on('chainChanged', () => window.location.reload());
 }
 ```
-UI Feedback: Transaction Lifecycle
+### UI Feedback: Transaction Lifecycle
+
 The TransactionSimulator.js component performs a simple simulation by sending ETH from the connected account to itself. It shows real-time feedback throughout the transaction lifecycle:
 
 "🔄 Sending transaction..."
@@ -39,7 +40,8 @@ The TransactionSimulator.js component performs a simple simulation by sending ET
 
 It uses the signer.sendTransaction method from ethers.js and waits for confirmation using tx.wait().
 
-Core Logic
+### Core Logic
+
 ```js
 const tx = await signer.sendTransaction({
   to: await signer.getAddress(),
@@ -49,7 +51,8 @@ await tx.wait();
 setStatus("✅ Transaction completed!");
 ```
 
-Component Integration Strategy
+### Component Integration Strategy
+
 To avoid duplicate connection buttons and ensure a clean state flow between components:
 
 Navbar.jsx holds the shared state: provider and signer.
@@ -60,14 +63,16 @@ TransactionSimulator receives the signer as a prop and disables the "Simulate Tx
 
 This architecture ensures clean separation of concerns and smooth communication between components.
 
-Relevant Files
+### Relevant Files
+
 src/components/WalletConnect.js
 
 src/components/TransactionSimulator.js
 
 src/components/Navbar.jsx
 
-How to Test
+### How to Test
+
 Run the project using:
 
 ```js
@@ -79,7 +84,8 @@ Confirm that the address and network are displayed.
 
 Click Simulate Tx to perform a test transaction and follow the feedback status.
 
-Notes
+### Notes
+
 We use ethers.js v5.x (already included in the project).
 
 No additional dependencies were installed.
